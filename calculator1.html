@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            background: url(heron-5941013_1920.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+            z-index:-1;
+            display: flex;
+
+        }
+
+        .input {
+            font-size: 40px;
+            font-family: monospace;
+            color: white;
+        }
+
+        .container {
+            width: 200px;
+            height: 500px;
+            /* background: transparent; */
+            border: 2px white;
+            border-radius: 30px;
+            /* background-color:rgba(255,100, 44, .6); */
+            /* backdrop-filter: 24px; */
+            float: right;
+            margin-right: 100px;
+            margin-top: 80px;
+            backdrop-filter: blur(3px);
+            animation-name: blur;
+            box-shadow: inset 4px 4px grey, 4px 4px grey, 4px 4px grey;
+
+            transition: 2s;
+            padding: 20px;
+        }
+
+        input {
+            font-size: 100%;
+            border-radius: 13px;
+            border-bottom: 3px;
+            box-shadow: inset 2px 2px grey, 2px 2px gray, 2px 2px grey;
+            border-style: hidden;
+            width: 100%;
+            position: relative;
+            background: transparent;
+            text-align-last: right;
+        }
+
+        .container:hover {
+            backdrop-filter: blur(10px);
+            transition: 3s;
+        }
+
+
+        .operator:hover {
+            transform: scale(1.5);
+            /* transform: rotateY(360deg); */
+        }
+
+        .numbers:hover {
+            transform: scale(1.5);
+        }
+
+
+
+        .name {
+            background-color: transparent;
+            stroke-width: 4px;
+            color: white;
+        }
+
+
+        .buttonbox {
+            width: 100%;
+            top: 50px;
+            position: relative;
+            /* background-color: tomato; */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+
+        .operator,
+        .numbers {
+            margin-left: 10px;
+            margin-top: 20px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: transparent;
+            color: white;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }.numbers{z-index: 1;}
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="subconmtainer">
+            <center>
+                <h1 class="name">calculator</h1>
+            </center>
+            <input type="text" class="input" name="answer" id="input" style="height: 90px">
+        </div>
+
+        <div class="buttonbox">
+            <button class="numbers" id="button">1</button>
+            <button class="numbers" id="button">2</button>
+            <button class="numbers" id="button">3</button>
+            <button class="numbers" id="button">AC</button>
+            <button class="numbers" id="button">5</button>
+            <button class="numbers" id="button">6</button>
+            <button class="numbers" value="7" id="number">7</button>
+            <button class="operator" id="button">+</button>
+            <button class="numbers" id="button">8</button>
+            <button class="numbers">9</button>
+            <button class="numbers">0</button>
+            <button class="operator">-</button>
+            <button class="operator">*</button>
+            <button class="operator">%</button>
+            <button class="operator">/</button>
+            <button class="operator">=</button>
+            <button class="operator">(</button>
+            <button class="operator">)</button>
+            <button class="operator" ">Rt</button>
+            <button class="operator">.</button>
+
+        </div>
+    </div>
+    <script>
+
+
+        let screen = document.getElementById('input');
+        buttons = document.querySelectorAll('button');
+        let screenValue = '';
+        for (item of buttons) {
+            item.addEventListener('click', (e) => {
+                buttonText = e.target.innerText;
+                console.log('Button text is ', buttonText);
+                if (buttonText == 'X') {
+                    buttonText = '*';
+                    screenValue += buttonText;
+                    screen.value = screenValue;
+
+                }
+                else if (buttonText=='rt') {
+                  screen.value=Math.sqrt(screenValue)
+                }
+                else if (buttonText == 'AC') {
+                    screenValue = "";
+                    screen.value = screenValue;
+                }
+                else if (buttonText == '=') {
+                    screen.value = eval(screenValue);
+                }
+                else {
+                    screenValue += buttonText;
+                    screen.value = screenValue;
+                }
+
+            })
+        }
+
+
+    </script>
+</body>
+
+</html>
